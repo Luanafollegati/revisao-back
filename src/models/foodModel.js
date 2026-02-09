@@ -5,13 +5,13 @@ export const create = async (data) => {
 };
 
 export const findAll = async (filters = {}) => {
-    const { nome, descricao, ano, preco } = filters;
+    const { nome, categoria, disponibilidade } = filters;
     const where = {};
 
     if (nome) where.nome = { contains: nome, mode: 'insensitive' };
-    if (descricao) where.descricao = { contains: descricao, mode: 'insensitive' };
-    if (ano !== undefined) where.ano = parseInt(ano);
-    if (preco !== undefined) where.preco = parseFloat(preco);
+    if (categoria) where.categoria = { contains: categoria, mode: 'insensitive' };
+    if (disponibilidade !== undefined) where.disponibilidade = Boolean(disponibilidade) 
+
 
     return await prisma.food.findMany({
         where,
@@ -37,3 +37,4 @@ export const remove = async (id) => {
         where: { id: parseInt(id) },
     });
 };
+
