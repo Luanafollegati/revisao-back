@@ -10,7 +10,7 @@ export const findAll = async (filters = {}) => {
 
     if (nome) where.nome = { contains: nome, mode: 'insensitive' };
     if (categoria) where.categoria = { contains: categoria, mode: 'insensitive' };
-    if (disponibilidade !== undefined) where.disponibilidade = Boolean(disponibilidade) 
+    if (disponibilidade !== undefined) where.disponibilidade = Boolean(disponibilidade)
 
 
     return await prisma.food.findMany({
@@ -26,7 +26,7 @@ export const findById = async (id) => {
 };
 
 export const update = async (id, data) => {
-    return await prisma.food.update({
+    return prisma.food.update({
         where: { id: parseInt(id) },
         data,
     });
@@ -37,4 +37,3 @@ export const remove = async (id) => {
         where: { id: parseInt(id) },
     });
 };
-
